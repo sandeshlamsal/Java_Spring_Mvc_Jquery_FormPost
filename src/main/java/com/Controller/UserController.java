@@ -20,18 +20,23 @@ public class UserController {
 		 return "index";		
 }
 	
-	@RequestMapping(value = "/chkUser",method=RequestMethod.POST)
+	@RequestMapping(value = "/chkUser",consumes="application/json", produces="application/json", method=RequestMethod.POST)
 	public @ResponseBody Response chkUser(@RequestBody User objUser) {
 		// to send text only to browser use @ResponseBody
 		Response response=new Response();
-		if(objUser.getUser().toString()=="sandesh" && objUser.getPassword()=="lamsal"){
+		if(objUser.getUser().toString().equals("sandesh") && objUser.getPassword().equals("lamsal")){
 			response.setMsg("sucess");
 		    return response;
 		}
 		else{
 			response.setMsg("fail");
-		   return response;	
+		    return response;	
 		}
+}
+	
+	@RequestMapping(value = "/chkUser",method=RequestMethod.GET)
+	public @ResponseBody String chkUser2() {
+		return "Hello World";
 }
 	
 	
